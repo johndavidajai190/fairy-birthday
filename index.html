@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#d9c4ff">
+<title>A Fairy Birthday Surprise ✨</title>
+<style>
+:root{--ink:#4f326b;--purple:#8b5cf6;--pink:#ff8fc7;--lav:#eadfff;--cream:#fffaff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);overflow-x:hidden;background:radial-gradient(ellipse at 20% 10%,#fff 0,transparent 32%),linear-gradient(145deg,#f8edff,#e8e0ff 48%,#fff0f7)}
+button,input{font:inherit}
+#gate{min-height:100svh;display:grid;place-items:center;padding:22px;position:relative;overflow:hidden}
+.card{position:relative;z-index:2;width:min(100%,420px);padding:32px 24px;border:1px solid #ffffffd9;border-radius:30px;text-align:center;background:#ffffffc9;box-shadow:0 22px 70px #65418c20;backdrop-filter:blur(12px)}
+.moon{font-size:60px;filter:drop-shadow(0 0 18px #d5a8ff);animation:float 3s ease-in-out infinite}
+h1{font-size:clamp(1.9rem,7vw,2.6rem);line-height:1.12;margin:12px 0;color:#8652bd}
+.subtitle{line-height:1.65;color:#765a8e;margin:0 auto 22px;max-width:300px}
+#passcode{width:100%;padding:15px;border:2px solid #d9c5f7;border-radius:15px;background:#fffaff;text-align:center;font-size:1.35rem;letter-spacing:.55rem;outline:none}
+#passcode:focus{border-color:var(--purple);box-shadow:0 0 0 4px #8b5cf620}
+.primary{width:100%;margin-top:13px;border:0;border-radius:15px;padding:14px 18px;color:white;font-weight:750;background:linear-gradient(100deg,#a56de7,#ff8fc7);box-shadow:0 8px 20px #8c58c435;cursor:pointer;transition:transform .2s}
+.primary:active{transform:scale(.98)}
+#error{min-height:24px;color:#b42375;font-size:.9rem;margin:10px 0 0}
+.floaty{position:absolute;pointer-events:none;user-select:none;animation:drift linear infinite;opacity:.88}
+.f1{left:7%;font-size:32px;bottom:-70px;animation-duration:14s}.f2{left:78%;font-size:39px;bottom:-80px;animation-duration:17s;animation-delay:2s}.f3{left:42%;font-size:25px;bottom:-60px;animation-duration:13s;animation-delay:4s}.f4{left:88%;font-size:29px;bottom:-60px;animation-duration:18s;animation-delay:1s}.f5{left:22%;font-size:26px;bottom:-70px;animation-duration:16s;animation-delay:5s}.f6{left:58%;font-size:25px;bottom:-65px;animation-duration:19s;animation-delay:3s}
+#surprise{display:none;min-height:100svh;padding:25px 16px 60px;position:relative;overflow:hidden}
+.hero{max-width:850px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.kicker{display:inline-block;border:1px solid #e2d1ff;background:#ffffffbd;border-radius:99px;padding:8px 14px;font-size:.83rem;letter-spacing:.05em}
+.hero h1{font-size:clamp(2.35rem,9vw,5rem);margin:18px auto 10px;text-shadow:0 4px 0 #fff}
+.hero p{font-size:clamp(1rem,3.7vw,1.2rem);line-height:1.75;max-width:650px;margin:0 auto 22px}
+.photo-frame{width:min(78vw,330px);aspect-ratio:4/4.5;margin:25px auto;display:grid;place-items:center;border:10px solid white;border-bottom-width:25px;border-radius:9px;background:linear-gradient(135deg,#f8dcff,#e1d7ff);box-shadow:0 18px 45px #59327624;transform:rotate(-2deg);overflow:hidden;position:relative}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:none}
+.photo-placeholder{text-align:center;padding:20px;color:#8757a3;line-height:1.6}
+.photo-placeholder span{display:block;font-size:4rem;margin-bottom:8px}
+.message{max-width:700px;margin:24px auto;background:#ffffffc9;border:1px solid white;border-radius:25px;padding:25px 22px;box-shadow:0 14px 40px #65418c18;line-height:1.85;font-size:1.04rem}
+.message h2{color:#a052bd;margin:0 0 10px;font-size:1.65rem}
+.wishes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:700px;margin:18px auto}
+.wish{background:#ffffffc9;border:1px solid white;border-radius:18px;padding:15px 8px;font-size:.93rem;box-shadow:0 8px 22px #65418c10}
+.wish b{display:block;font-size:1.7rem;margin-bottom:5px}
+footer{margin-top:25px;font-size:.9rem;color:#805b99}
+.confetti{position:fixed;top:-25px;z-index:5;pointer-events:none;animation:fall linear forwards}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes drift{from{transform:translateY(0) rotate(0)}to{transform:translateY(-120vh) rotate(35deg)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.1}}
+@media(max-width:420px){.card{padding:28px 20px}.wishes{grid-template-columns:1fr}.wish{display:flex;align-items:center;gap:12px;text-align:left;padding:11px 15px}.wish b{margin:0}.message{padding:22px 17px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<section id="gate">
+  <span class="floaty f1">🦋</span><span class="floaty f2">🌸</span><span class="floaty f3">✨</span><span class="floaty f4">🧚</span><span class="floaty f5">🌷</span><span class="floaty f6">💫</span>
+  <main class="card">
+    <div class="moon">🌙✨</div>
+    <h1>A Fairy-Tale Surprise!</h1>
+    <p class="subtitle">A little magical birthday surprise is waiting for someone very special. Enter the secret code to unlock it, birthday girl! 🦋💜</p>
+    <form id="unlockForm">
+      <input id="passcode" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="••••" aria-label="Birthday passcode" autocomplete="off" required>
+      <button class="primary" type="submit">Unlock the magic ✨</button>
+    </form>
+    <p id="error" role="status"></p>
+    <small>Sprinkled with love and fairy dust 💕</small>
+  </main>
+</section>
+<section id="surprise">
+  <span class="floaty f1">🦋</span><span class="floaty f2">🌸</span><span class="floaty f3">✨</span><span class="floaty f4">💖</span><span class="floaty f5">🌷</span><span class="floaty f6">🧚</span>
+  <main class="hero">
+    <span class="kicker">✨ A LITTLE MAGIC JUST FOR YOU ✨</span>
+    <h1>Happy Birthday,<br><span id="nameHeading">My Dear Sister</span>! 💖</h1>
+    <p>May your special day sparkle with laughter, love, beautiful surprises, and a little fairy dust in every moment.</p>
+    <div class="photo-frame">
+      <img id="sisterPhoto" alt="A favourite photo of my sister">
+      <div class="photo-placeholder" id="photoPlaceholder"><span>🦋🌷</span>Your favourite photo goes here<br><small>Add a photo using the instructions below</small></div>
+    </div>
+    <section class="message">
+      <h2>To my wonderful sister 🌸</h2>
+      <p id="personalMessage">You are the most wonderful sister. May your life always be filled with happiness, love, and success. Love you always! 💖</p>
+      <p><strong>Happy Birthday! Keep shining, birthday girl! 🥳💜</strong></p>
+    </section>
+    <div class="wishes">
+      <div class="wish"><b>🌈</b><span>Days full of happiness</span></div>
+      <div class="wish"><b>🦋</b><span>Love and magic in every moment</span></div>
+      <div class="wish"><b>⭐</b><span>Every beautiful dream coming true</span></div>
+    </div>
+    <button class="primary" style="max-width:310px" id="celebrate">Sprinkle more fairy dust! ✨</button>
+    <footer>Made especially for you, with all my love 💝</footer>
+  </main>
+</section>
+<script>
+const SECRET_PASSCODE = "1234";
+const SISTER_NAME = "My Dear Sister";
+const PERSONAL_MESSAGE = "You are the most wonderful sister. May your life always be filled with happiness, love, and success. Love you always! 💖";
+
+document.getElementById("nameHeading").textContent = SISTER_NAME;
+document.getElementById("personalMessage").textContent = PERSONAL_MESSAGE;
+
+document.getElementById("unlockForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const entered = document.getElementById("passcode").value;
+  if (entered === SECRET_PASSCODE) {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("surprise").style.display = "block";
+    window.scrollTo(0,0);
+    burst(65);
+  } else {
+    document.getElementById("error").textContent = "Not quite! Try the secret code again 💕";
+    document.getElementById("passcode").value = "";
+    document.getElementById("passcode").focus();
+  }
+});
+function burst(amount){
+  const symbols=["🎉","💖","🌸","✨","🎀","🌷","🦋","💫","⭐","💕"];
+  for(let i=0;i<amount;i++){
+    const el=document.createElement("span");
+    el.className="confetti";
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=(3+Math.random()*4)+"s";
+    el.style.fontSize=(14+Math.random()*18)+"px";
+    el.style.animationDelay=(Math.random()*1.2)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),8000);
+  }
+}
+document.getElementById("celebrate").addEventListener("click",()=>burst(85));
+
+/* PHOTO: put your image in the same folder as this HTML file,
+   name it sister.jpg, then remove the // marks from the 3 lines below. */
+// document.getElementById("sisterPhoto").src = "sister.jpg";
+// document.getElementById("sisterPhoto").style.display = "block";
+// document.getElementById("photoPlaceholder").style.display = "none";
+</script>
+</body>
+</html>
